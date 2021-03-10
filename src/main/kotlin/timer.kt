@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Calendar.*
 
 
-class Times {
+class Times2 {
 
     val listTimes = mutableListOf<String>()
     val listHours = mutableListOf<String>()
@@ -124,21 +124,43 @@ class Times {
 
     fun average() {
 
-        val aveDate = dates.sum() / dates.size
-        val aveHour = hours.sum() / hours.size
-        val aveMin = minutes.sum() / minutes.size
-        val aveSec = seconds.sum() / seconds.size
-
-        println("Average time in between sessions is $aveSec")
+        var aveDate = dates.sum() / dates.size
+        var aveHour = hours.sum() / hours.size
+        var aveMin = minutes.sum() / minutes.size
+        var aveSec = seconds.sum() / seconds.size
 
 
+        if (aveSec > 60) {
+            aveMin += (aveSec / 60)
+        }
+        if (aveSec > 60){
+            aveSec %= 60
+        }
+        if (aveMin > 60){ aveHour += (aveMin / 60)
+            aveMin %= 60
+        }
+        if (aveHour > 24){ aveDate += (aveHour / 24)
+            aveHour %= 24
+        }
+
+        val average = when{
+            (aveDate == 0) and (aveHour == 0) and (aveMin == 0) -> "$aveSec sec"
+
+            (aveDate == 0) and (aveHour == 0) and (aveMin != 0) -> "$aveMin min and $aveSec sec"
+
+            (aveDate == 0) and (aveHour != 0) -> "$aveHour hours, $aveMin min, and $aveSec sec"
+
+            else -> "$aveDate days, $aveHour hours, $aveMin min, and $aveSec sec"
+        }
+
+        println(average)
 
     }
 
 }
-class Myapp {
+class Myapp2 {
 
-    val time = Times()
+    val time = Times2()
 
     fun begin() {
 
@@ -160,6 +182,6 @@ class Myapp {
 }
 
 fun main() {
-    val app = Myapp()
+    val app = Myapp2()
     app.begin()
 }
