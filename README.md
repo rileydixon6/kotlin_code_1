@@ -24,5 +24,4 @@ To develop this software I used several libraries within Java such as time, and 
 
 {Make a list of things that you need to fix, improve, and add in the future.}
 * Item 1 I would like to make adjustments on the time difference calculator
-* Item 2 I would like to provide stats like average time that the program is run.
 * Item 3 Add more comments to make it more understandable.
